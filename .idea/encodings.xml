@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/AbstractLottery.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/Cash4LifeLottery.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/parser/AbstractParser.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/parser/IParsable.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/parser/IParser.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/parser/JSONParser.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/parser/factories/AbstractParserFactory.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/api/parser/json/JSONCash4LifeParser.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/vishaan/lotteryapp/util/Helper.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/res" charset="windows-1252" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

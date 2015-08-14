@@ -1,0 +1,452 @@
+{
+  "meta" : {
+    "view" : {
+      "id" : "kwxv-fwze",
+      "name" : "Lottery Cash 4 Life Winning Numbers: Beginning 2014",
+      "attribution" : "New York State Gaming Commission",
+      "attributionLink" : "http://nylottery.ny.gov/wps/portal/Home/Lottery/home/your+lottery/drawing+results/drawingresults_cash4life",
+      "averageRating" : 0,
+      "category" : "Government & Finance",
+      "createdAt" : 1403034474,
+      "description" : "Go to http://on.ny.gov/1xRIvPz on the New York Lottery website for past Cash 4 Life results and payouts.",
+      "displayType" : "table",
+      "downloadCount" : 1296,
+      "indexUpdatedAt" : 1422961349,
+      "newBackend" : false,
+      "numberOfComments" : 0,
+      "oid" : 10098339,
+      "publicationAppendEnabled" : false,
+      "publicationDate" : 1422961301,
+      "publicationGroup" : 1619790,
+      "publicationStage" : "published",
+      "rowsUpdatedAt" : 1422961300,
+      "rowsUpdatedBy" : "xzik-pf59",
+      "tableId" : 2189023,
+      "totalTimesRated" : 0,
+      "viewCount" : 1617837,
+      "viewLastModified" : 1422961302,
+      "viewType" : "tabular",
+      "columns" : [ {
+        "id" : -1,
+        "name" : "sid",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":sid",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "id",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":id",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "position",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":position",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "created_at",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":created_at",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "created_meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":created_meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "updated_at",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":updated_at",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "updated_meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":updated_meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : 187505336,
+        "name" : "Draw Date",
+        "dataTypeName" : "calendar_date",
+        "fieldName" : "draw_date",
+        "position" : 1,
+        "renderTypeName" : "calendar_date",
+        "tableColumnId" : 20316627,
+        "width" : 140,
+        "cachedContents" : {
+          "non_null" : 67,
+          "smallest" : "2014-06-16T00:00:00",
+          "null" : 0,
+          "largest" : "2015-02-02T00:00:00",
+          "top" : [ {
+            "count" : 20,
+            "item" : "2014-11-06T00:00:00"
+          }, {
+            "count" : 19,
+            "item" : "2014-11-10T00:00:00"
+          }, {
+            "count" : 18,
+            "item" : "2014-11-13T00:00:00"
+          }, {
+            "count" : 17,
+            "item" : "2014-11-17T00:00:00"
+          }, {
+            "count" : 16,
+            "item" : "2014-11-20T00:00:00"
+          }, {
+            "count" : 15,
+            "item" : "2014-11-24T00:00:00"
+          }, {
+            "count" : 14,
+            "item" : "2014-11-27T00:00:00"
+          }, {
+            "count" : 13,
+            "item" : "2014-12-01T00:00:00"
+          }, {
+            "count" : 12,
+            "item" : "2014-12-04T00:00:00"
+          }, {
+            "count" : 11,
+            "item" : "2014-12-08T00:00:00"
+          }, {
+            "count" : 10,
+            "item" : "2014-12-11T00:00:00"
+          }, {
+            "count" : 9,
+            "item" : "2014-12-15T00:00:00"
+          }, {
+            "count" : 8,
+            "item" : "2014-12-18T00:00:00"
+          }, {
+            "count" : 7,
+            "item" : "2014-12-22T00:00:00"
+          }, {
+            "count" : 6,
+            "item" : "2014-12-25T00:00:00"
+          }, {
+            "count" : 5,
+            "item" : "2014-12-29T00:00:00"
+          }, {
+            "count" : 4,
+            "item" : "2015-01-01T00:00:00"
+          }, {
+            "count" : 3,
+            "item" : "2015-01-05T00:00:00"
+          }, {
+            "count" : 2,
+            "item" : "2015-01-08T00:00:00"
+          }, {
+            "count" : 1,
+            "item" : "2015-01-12T00:00:00"
+          } ]
+        },
+        "format" : {
+          "view" : "date",
+          "align" : "center"
+        }
+      }, {
+        "id" : 187505337,
+        "name" : "Winning Numbers",
+        "dataTypeName" : "text",
+        "description" : "Winning numbers",
+        "fieldName" : "winning_numbers",
+        "position" : 2,
+        "renderTypeName" : "text",
+        "tableColumnId" : 20316628,
+        "width" : 188,
+        "cachedContents" : {
+          "non_null" : 67,
+          "smallest" : "01 04 10 28 33",
+          "null" : 0,
+          "largest" : "28 39 40 53 54",
+          "top" : [ {
+            "count" : 20,
+            "item" : "03 07 14 20 32"
+          }, {
+            "count" : 19,
+            "item" : "07 21 30 53 55"
+          }, {
+            "count" : 18,
+            "item" : "07 08 16 49 56"
+          }, {
+            "count" : 17,
+            "item" : "08 23 37 38 58"
+          }, {
+            "count" : 16,
+            "item" : "02 40 46 59 60"
+          }, {
+            "count" : 15,
+            "item" : "08 25 26 33 56"
+          }, {
+            "count" : 14,
+            "item" : "09 30 43 51 55"
+          }, {
+            "count" : 13,
+            "item" : "04 07 33 50 55"
+          }, {
+            "count" : 12,
+            "item" : "01 15 21 41 60"
+          }, {
+            "count" : 11,
+            "item" : "04 11 14 46 59"
+          }, {
+            "count" : 10,
+            "item" : "12 22 27 35 49"
+          }, {
+            "count" : 9,
+            "item" : "08 22 31 38 40"
+          }, {
+            "count" : 8,
+            "item" : "20 22 26 27 43"
+          }, {
+            "count" : 7,
+            "item" : "03 17 30 50 55"
+          }, {
+            "count" : 6,
+            "item" : "05 14 22 37 60"
+          }, {
+            "count" : 5,
+            "item" : "08 09 35 37 41"
+          }, {
+            "count" : 4,
+            "item" : "13 19 20 21 35"
+          }, {
+            "count" : 3,
+            "item" : "12 23 29 38 43"
+          }, {
+            "count" : 2,
+            "item" : "16 28 38 43 45"
+          }, {
+            "count" : 1,
+            "item" : "01 05 11 39 47"
+          } ]
+        },
+        "format" : {
+          "align" : "center"
+        }
+      }, {
+        "id" : 187505338,
+        "name" : "Cash Ball",
+        "dataTypeName" : "text",
+        "description" : "Cash ball",
+        "fieldName" : "cash_ball",
+        "position" : 3,
+        "renderTypeName" : "text",
+        "tableColumnId" : 20316629,
+        "width" : 134,
+        "cachedContents" : {
+          "non_null" : 67,
+          "smallest" : "01",
+          "null" : 0,
+          "largest" : "04",
+          "top" : [ {
+            "count" : 20,
+            "item" : "03"
+          }, {
+            "count" : 19,
+            "item" : "02"
+          }, {
+            "count" : 18,
+            "item" : "04"
+          }, {
+            "count" : 17,
+            "item" : "01"
+          } ]
+        },
+        "format" : {
+          "align" : "center"
+        }
+      } ],
+      "grants" : [ {
+        "inherited" : false,
+        "type" : "viewer",
+        "flags" : [ "public" ]
+      } ],
+      "metadata" : {
+        "custom_fields" : {
+          "Notes" : {
+            "Notes" : "The information contained on these pages is believed to be accurate. In the event of a discrepancy between the information displayed on this Web site concerning winning numbers and payouts and the information contained in the official and certified files maintained by the New York Lottery's Drawing Unit, those maintained by the Drawing Unit shall prevail."
+          },
+          "Dataset Summary" : {
+            "Granularity" : "By draw",
+            "Coverage" : "Statewide",
+            "Posting Frequency" : "Twice weekly",
+            "Data Frequency" : "Twice weekly",
+            "Dataset Owner" : "New York State Gaming Commission",
+            "Organization" : "The New York Lottery",
+            "Time Period" : "Beginning 6/16/2014",
+            "Contact Information" : "Info@gaming.ny.gov"
+          },
+          "Additional Resources" : {
+            "See Also" : "http://www.gaming.ny.gov/"
+          },
+          "Dataset Information" : {
+            "Agency" : "Gaming Commission, New York State"
+          }
+        },
+        "renderTypeConfig" : {
+          "visible" : {
+            "table" : true
+          }
+        },
+        "availableDisplayTypes" : [ "table", "fatrow", "page" ],
+        "jsonQuery" : {
+          "order" : [ {
+            "ascending" : false,
+            "columnFieldName" : "draw_date"
+          } ]
+        },
+        "rdfSubject" : "0",
+        "attachments" : [ {
+          "assetId" : "TVLdpXbCpZhhc1DSgHaSY0QOSV_L7LM1wGCcx_Txx5k",
+          "blobId" : "",
+          "name" : "NYSGAM_Cash4Life_Overview.pdf",
+          "filename" : "NYSGAM_Cash4Life_Overview.pdf"
+        }, {
+          "assetId" : "8eMY9KKmZL0Ig4zEfycwd2X8qhZlv3mzJUBoIOYrO9o",
+          "blobId" : "",
+          "name" : "NYSGAM_Cash4Life_Winning_Numbers_DataDictionary.pdf",
+          "filename" : "NYSGAM_Cash4Life_Winning_Numbers_DataDictionary.pdf"
+        } ]
+      },
+      "owner" : {
+        "id" : "xzik-pf59",
+        "displayName" : "NY Open Data",
+        "profileImageUrlLarge" : "/images/profile/5700/9521/image_large.jpg",
+        "profileImageUrlMedium" : "/images/profile/5700/9521/image_thumb.jpg",
+        "profileImageUrlSmall" : "/images/profile/5700/9521/image_tiny.jpg",
+        "roleName" : "publisher",
+        "screenName" : "NY Open Data",
+        "rights" : [ "create_datasets", "edit_others_datasets", "edit_nominations", "approve_nominations", "moderate_comments", "manage_stories", "feature_items", "change_configurations", "view_domain", "view_others_datasets", "create_pages", "edit_pages", "view_goals", "view_dashboards", "edit_goals", "edit_dashboards" ]
+      },
+      "query" : {
+        "orderBys" : [ {
+          "ascending" : false,
+          "expression" : {
+            "columnId" : 187505336,
+            "type" : "column"
+          }
+        } ]
+      },
+      "rights" : [ "read" ],
+      "sortBys" : [ {
+        "id" : 0,
+        "viewColumnId" : 187505336
+      } ],
+      "tableAuthor" : {
+        "id" : "xzik-pf59",
+        "displayName" : "NY Open Data",
+        "profileImageUrlLarge" : "/images/profile/5700/9521/image_large.jpg",
+        "profileImageUrlMedium" : "/images/profile/5700/9521/image_thumb.jpg",
+        "profileImageUrlSmall" : "/images/profile/5700/9521/image_tiny.jpg",
+        "roleName" : "publisher",
+        "screenName" : "NY Open Data",
+        "rights" : [ "create_datasets", "edit_others_datasets", "edit_nominations", "approve_nominations", "moderate_comments", "manage_stories", "feature_items", "change_configurations", "view_domain", "view_others_datasets", "create_pages", "edit_pages", "view_goals", "view_dashboards", "edit_goals", "edit_dashboards" ]
+      },
+      "tags" : [ "cash 4 life", "new york lottery", "winning", "results" ],
+      "flags" : [ "default" ]
+    }
+  },
+  "data" : [ [ 133, "EFA8A999-2C71-4357-81B8-DD1FBBBEDB2A", 133, 1422961300, "708543", 1422961300, "708543", "{\n}", "2015-02-02T00:00:00", "04 08 17 20 21", "04" ]
+, [ 131, "9E0C5355-4E03-477D-A073-4BED0B3A24C1", 131, 1422615694, "708543", 1422615694, "708543", "{\n}", "2015-01-29T00:00:00", "08 24 28 57 60", "02" ]
+, [ 129, "60873354-72B3-48C2-8CB3-13BD630B4DBC", 129, 1422356509, "708543", 1422356509, "708543", "{\n}", "2015-01-26T00:00:00", "01 20 24 46 57", "01" ]
+, [ 127, "2AA47495-72C5-4086-98EF-CDE64374946E", 127, 1422010900, "708543", 1422010900, "708543", "{\n}", "2015-01-22T00:00:00", "08 11 35 47 60", "02" ]
+, [ 125, "0E8CB1B4-823F-4E60-A773-1A939E96DC06", 125, 1421751693, "708543", 1421751693, "708543", "{\n}", "2015-01-19T00:00:00", "18 29 47 52 53", "03" ]
+, [ 123, "008F206D-92EB-4A20-B887-E6689B25E3E2", 123, 1421406088, "708543", 1421406088, "708543", "{\n}", "2015-01-15T00:00:00", "12 15 22 25 27", "03" ]
+, [ 121, "D42D2EBF-7700-4F5B-9BC0-FD5637A19FD9", 121, 1421146890, "708543", 1421146890, "708543", "{\n}", "2015-01-12T00:00:00", "01 05 11 39 47", "01" ]
+, [ 119, "0C5A0B65-8D2D-4839-8786-5081A47668C8", 119, 1420801294, "708543", 1420801294, "708543", "{\n}", "2015-01-08T00:00:00", "16 28 38 43 45", "03" ]
+, [ 117, "ED96AB53-FCDB-46E9-8440-3655AC3FB34C", 117, 1420542090, "708543", 1420542090, "708543", "{\n}", "2015-01-05T00:00:00", "12 23 29 38 43", "03" ]
+, [ 115, "BBB2C4CC-93DE-4015-B820-FB007F1CB762", 115, 1420196554, "708543", 1420196554, "708543", "{\n}", "2015-01-01T00:00:00", "13 19 20 21 35", "02" ]
+, [ 113, "E194E4AF-152C-4229-88F9-45F7629E0ABF", 113, 1419937321, "708543", 1419937321, "708543", "{\n}", "2014-12-29T00:00:00", "08 09 35 37 41", "04" ]
+, [ 111, "E12FA573-ED28-4726-8E80-9783452BECA0", 111, 1419591671, "708543", 1419591671, "708543", "{\n}", "2014-12-25T00:00:00", "05 14 22 37 60", "02" ]
+, [ 109, "5A0507CF-B794-43A6-A30D-9B830091D8A3", 109, 1419332492, "708543", 1419332492, "708543", "{\n}", "2014-12-22T00:00:00", "03 17 30 50 55", "03" ]
+, [ 107, "520953D2-4DFD-404D-8D61-713CBDD641E5", 107, 1418986901, "708543", 1418986901, "708543", "{\n}", "2014-12-18T00:00:00", "20 22 26 27 43", "02" ]
+, [ 105, "BF8D8512-533A-47D8-B958-1D53A359D5F6", 105, 1418727695, "708543", 1418727695, "708543", "{\n}", "2014-12-15T00:00:00", "08 22 31 38 40", "03" ]
+, [ 103, "A9B2120A-45B0-4B5A-91A6-2CD14B6CB804", 103, 1418382094, "708543", 1418382094, "708543", "{\n}", "2014-12-11T00:00:00", "12 22 27 35 49", "04" ]
+, [ 101, "1A59B642-300B-4971-97A2-2EEB3B617A96", 101, 1418122870, "708543", 1418122870, "708543", "{\n}", "2014-12-08T00:00:00", "04 11 14 46 59", "04" ]
+, [ 99, "33276E54-A25A-4344-9522-952660A46FC6", 99, 1417777290, "708543", 1417777290, "708543", "{\n}", "2014-12-04T00:00:00", "01 15 21 41 60", "04" ]
+, [ 97, "EBF6ECC5-0B85-438D-8A46-9FCE5E519E29", 97, 1417518089, "708543", 1417518089, "708543", "{\n}", "2014-12-01T00:00:00", "04 07 33 50 55", "01" ]
+, [ 95, "776BD8AD-7BBC-45E0-8E90-39811986C977", 95, 1417172489, "708543", 1417172489, "708543", "{\n}", "2014-11-27T00:00:00", "09 30 43 51 55", "03" ]
+, [ 93, "E4FBC55A-B4ED-468A-A44C-CE5445C21A1B", 93, 1416913310, "708543", 1416913310, "708543", "{\n}", "2014-11-24T00:00:00", "08 25 26 33 56", "01" ]
+, [ 91, "AACF639A-77E9-4D8C-8998-75A1A9279F42", 91, 1416567690, "708543", 1416567690, "708543", "{\n}", "2014-11-20T00:00:00", "02 40 46 59 60", "02" ]
+, [ 89, "4BB65C7D-C7AE-4B3B-B97B-04AB4F0F8837", 89, 1416308489, "708543", 1416308489, "708543", "{\n}", "2014-11-17T00:00:00", "08 23 37 38 58", "01" ]
+, [ 87, "38EC3289-915B-4D7B-8B5A-6C70EC890078", 87, 1415962897, "708543", 1415962897, "708543", "{\n}", "2014-11-13T00:00:00", "07 08 16 49 56", "04" ]
+, [ 85, "9FA03830-2A74-4DD2-85A0-0ABDDA81D1D1", 85, 1415833350, "708543", 1415833350, "708543", "{\n}", "2014-11-10T00:00:00", "07 21 30 53 55", "02" ]
+, [ 83, "0D294751-4AF6-47C1-A95E-9D9709CC0F7F", 83, 1415358153, "708543", 1415358153, "708543", "{\n}", "2014-11-06T00:00:00", "03 07 14 20 32", "03" ]
+, [ 81, "896D69B7-9696-4D2F-9534-540A5EFF5C46", 81, 1415142088, "708543", 1415142088, "708543", "{\n}", "2014-11-03T00:00:00", "03 27 28 49 52", "04" ]
+, [ 79, "792BD778-BFDB-4778-A82C-FC9A225D944F", 79, 1414749691, "708543", 1414749691, "708543", "{\n}", "2014-10-30T00:00:00", "19 22 29 38 53", "01" ]
+, [ 77, "D79ED4C9-E736-4503-9F8F-44E814128A11", 77, 1414490487, "708543", 1414490487, "708543", "{\n}", "2014-10-27T00:00:00", "06 09 28 40 41", "01" ]
+, [ 75, "4E97E80D-7E86-48D3-A356-461BDC559E2D", 75, 1414144891, "708543", 1414144891, "708543", "{\n}", "2014-10-23T00:00:00", "09 22 24 36 54", "01" ]
+, [ 73, "0EBA077B-BE4A-4D7C-9944-8741019B368E", 73, 1413885691, "708543", 1413885691, "708543", "{\n}", "2014-10-20T00:00:00", "08 16 43 52 59", "03" ]
+, [ 71, "46182F8D-360D-488B-A4F9-05514FA57EFB", 71, 1413540094, "708543", 1413540094, "708543", "{\n}", "2014-10-16T00:00:00", "12 13 20 28 45", "04" ]
+, [ 69, "1335B8F0-D3F5-4F48-B286-3F798CBC701D", 69, 1413280910, "708543", 1413280910, "708543", "{\n}", "2014-10-13T00:00:00", "10 13 49 54 57", "04" ]
+, [ 67, "AA1A6D71-13B5-44E0-9B81-0BB34DAE7EA4", 67, 1412935309, "708543", 1412935309, "708543", "{\n}", "2014-10-09T00:00:00", "23 26 32 50 57", "04" ]
+, [ 65, "EFC086DD-DE15-4DD8-9310-16911270BB89", 65, 1412762509, "708543", 1412762509, "708543", "{\n}", "2014-10-06T00:00:00", "16 30 37 52 55", "03" ]
+, [ 63, "756710CC-B5F0-4283-8BA0-3689222F93BC", 63, 1412373685, "708543", 1412373685, "708543", "{\n}", "2014-10-02T00:00:00", "23 34 35 44 52", "01" ]
+, [ 61, "6942D491-BAE6-4106-BBFF-9692E675D407", 61, 1412114490, "708543", 1412114490, "708543", "{\n}", "2014-09-29T00:00:00", "19 36 37 43 50", "01" ]
+, [ 59, "A5A781A5-5521-4B22-B514-F5DFA3F6D25A", 59, 1411766675, "708543", 1411766675, "708543", "{\n}", "2014-09-25T00:00:00", "09 11 28 30 41", "04" ]
+, [ 57, "AF5594CC-74AE-4B25-8D3A-E75AB61F320C", 57, 1411509795, "708543", 1411509795, "708543", "{\n}", "2014-09-22T00:00:00", "28 39 40 53 54", "01" ]
+, [ 55, "C7EB51A3-93B2-4A41-9CB7-E19F2294C189", 55, 1411164091, "708543", 1411164091, "708543", "{\n}", "2014-09-18T00:00:00", "05 10 11 24 28", "03" ]
+, [ 53, "AF1C8CC1-1FBA-4462-9314-ED07B787BEF7", 53, 1410882535, "708543", 1410882535, "708543", "{\n}", "2014-09-15T00:00:00", "03 05 09 32 56", "01" ]
+, [ 51, "60E229E5-B1B3-4EB3-B235-ECE3320C2151", 51, 1410516073, "708543", 1410516073, "708543", "{\n}", "2014-09-11T00:00:00", "12 44 56 58 59", "02" ]
+, [ 49, "DA294964-7674-4E5A-BBBC-D5452940E330", 49, 1410274667, "708543", 1410274667, "708543", "{\n}", "2014-09-08T00:00:00", "01 17 23 44 45", "02" ]
+, [ 47, "0374F671-02F0-4D00-AB0F-689BD851BBFF", 47, 1409911257, "708543", 1409911257, "708543", "{\n}", "2014-09-04T00:00:00", "03 21 28 32 56", "03" ]
+, [ 45, "6DB0C8AB-5075-4BB1-9149-2A7BEC028612", 45, 1409652055, "708543", 1409652055, "708543", "{\n}", "2014-09-01T00:00:00", "09 21 27 45 53", "02" ]
+, [ 43, "0BB0CCA8-09D9-475F-B97A-8084266C10C3", 43, 1409306475, "708543", 1409306475, "708543", "{\n}", "2014-08-28T00:00:00", "12 24 27 38 49", "02" ]
+, [ 41, "C1877239-185A-4B3D-946E-F5512047707A", 41, 1409047266, "708543", 1409047266, "708543", "{\n}", "2014-08-25T00:00:00", "06 08 34 40 59", "04" ]
+, [ 39, "774C4C27-7C65-48D1-89AA-89C3D9AF5C6B", 39, 1408701655, "708543", 1408701655, "708543", "{\n}", "2014-08-21T00:00:00", "11 24 40 43 47", "02" ]
+, [ 37, "1839C767-92D9-4A0D-8897-02DB365BA7C7", 37, 1408442466, "708543", 1408442466, "708543", "{\n}", "2014-08-18T00:00:00", "06 10 29 44 57", "02" ]
+, [ 35, "0C13DB12-A55A-42A7-A2BB-66D0C7C50645", 35, 1408096855, "708543", 1408096855, "708543", "{\n}", "2014-08-14T00:00:00", "03 11 34 46 60", "02" ]
+, [ 33, "60819CBF-EA03-477B-ABF2-0BD2242A9438", 33, 1407837657, "708543", 1407837657, "708543", "{\n}", "2014-08-11T00:00:00", "05 10 33 48 57", "03" ]
+, [ 31, "DB3F3DF6-C19A-4970-9F76-060B7D1DD383", 31, 1407492095, "708543", 1407492095, "708543", "{\n}", "2014-08-07T00:00:00", "03 18 38 40 49", "02" ]
+, [ 29, "91616BD7-CD64-4F70-92AD-260AED90744E", 29, 1407232865, "708543", 1407232865, "708543", "{\n}", "2014-08-04T00:00:00", "17 21 36 48 60", "03" ]
+, [ 27, "76996EA0-DD54-4EB5-B5C2-7FF8FE6E6386", 27, 1406887265, "708543", 1406887265, "708543", "{\n}", "2014-07-31T00:00:00", "13 25 26 32 58", "01" ]
+, [ 25, "68097553-6CC4-4787-865A-747B130D5EBE", 25, 1406628065, "708543", 1406628065, "708543", "{\n}", "2014-07-28T00:00:00", "06 15 31 51 53", "02" ]
+, [ 23, "EAAAAB4F-C17E-4129-B18A-5A2197AFBEAC", 23, 1406282465, "708543", 1406282465, "708543", "{\n}", "2014-07-24T00:00:00", "05 20 35 43 48", "03" ]
+, [ 21, "3BFADF1B-EDD6-415A-8790-05AAEECFB7C3", 21, 1406023264, "708543", 1406023264, "708543", "{\n}", "2014-07-21T00:00:00", "04 06 11 24 31", "03" ]
+, [ 19, "7A02B89B-7A1E-41F6-A4DD-D25CE447B9DE", 19, 1405677667, "708543", 1405677667, "708543", "{\n}", "2014-07-17T00:00:00", "08 09 22 46 51", "01" ]
+, [ 17, "B2217278-0DF2-4BD9-993B-CBF3E38005D8", 17, 1405418465, "708543", 1405418465, "708543", "{\n}", "2014-07-14T00:00:00", "09 19 34 37 49", "02" ]
+, [ 15, "81B00141-368C-4C89-A943-5512A585E9B6", 15, 1405072885, "708543", 1405072885, "708543", "{\n}", "2014-07-10T00:00:00", "11 12 31 54 59", "03" ]
+, [ 13, "49BC2CEE-8BEB-4A2B-9951-D0669FC80A57", 13, 1404813622, "708543", 1404813622, "708543", "{\n}", "2014-07-07T00:00:00", "11 13 23 54 55", "02" ]
+, [ 11, "FB8E9108-DA9A-4D9C-9BDF-3727F7A862AA", 11, 1404468022, "708543", 1404468022, "708543", "{\n}", "2014-07-03T00:00:00", "08 10 25 28 31", "02" ]
+, [ 9, "038EA5F2-C6F5-4DA9-B57A-EA185D8A609B", 9, 1404208939, "708543", 1404208939, "708543", "{\n}", "2014-06-30T00:00:00", "01 04 10 28 33", "02" ]
+, [ 7, "205077A2-7F97-42B3-9BF8-592B6E314EC6", 7, 1403886233, "708543", 1403886233, "708543", "{\n}", "2014-06-26T00:00:00", "15 22 51 52 58", "03" ]
+, [ 5, "B03A03EA-661A-452F-9084-6B95EDE9EFEA", 5, 1403604064, "708543", 1403604064, "708543", "{\n}", "2014-06-23T00:00:00", "05 16 21 33 47", "04" ]
+, [ 3, "9A327854-2BA9-474A-B392-EBBDF0806559", 3, 1403258540, "708543", 1403258540, "708543", "{\n}", "2014-06-19T00:00:00", "08 13 43 56 60", "02" ]
+, [ 1, "012CAE53-5033-48B4-BADA-E2EDB4C82D76", 1, 1403121467, "707756", 1403121467, "707756", "{\n}", "2014-06-16T00:00:00", "09 36 44 53 59", "03" ]
+ ]
+}
