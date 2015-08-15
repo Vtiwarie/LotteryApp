@@ -93,7 +93,7 @@ public class Helper {
             catch (NumberFormatException nfe) {
                 Log.e(tag, nfe.getMessage());
                 nfe.printStackTrace();
-            };
+            }
         }
 
         return results;
@@ -119,8 +119,6 @@ public class Helper {
         for(int i=0; i<dataArray.length; i++) {
             outputMap.put(i, 0);
         }
-
-        printMap(tag, outputMap);
 
         try{
             boolean bShouldAdd;

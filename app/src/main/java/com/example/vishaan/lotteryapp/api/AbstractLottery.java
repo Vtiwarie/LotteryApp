@@ -36,7 +36,7 @@ public abstract class AbstractLottery implements IParsable {
     }
 
     public IParser getParser() {
-        return parser;
+        return this.parser;
     }
 
     public void setParser(IParser parser) {
@@ -44,7 +44,7 @@ public abstract class AbstractLottery implements IParsable {
     }
 
     public Map<Integer, Integer> getMap() {
-        return map;
+        return this.map;
     }
 
     public void setMap(Map<Integer, Integer> map) {
@@ -52,7 +52,7 @@ public abstract class AbstractLottery implements IParsable {
     }
 
     public String getRawString() {
-        return rawString;
+        return this.rawString;
     }
 
     public void setRawString(String rawString) {
@@ -65,7 +65,7 @@ public abstract class AbstractLottery implements IParsable {
     }
 
     public int getMapSize() {
-        return mapSize;
+        return this.mapSize;
     }
 
     public void setMapSize(int mapSize) {
