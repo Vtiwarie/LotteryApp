@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,15 +33,29 @@ public class Helper {
     }
 
     public static void printMap(String tag, Map<Integer, Integer> map) {
-        Iterator<Integer> iterator = map.keySet().iterator();
-
-        while (iterator.hasNext()) {
-            int i = iterator.next();
             if(debug)
             {
-                log(tag, "Key: " + i + "  " + "Value: " + map.get(i));
+                for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                     log(tag, entry.getKey() + " = " + entry.getValue());
+                }
             }
+    }
+
+
+    public static <Integer> String getMapString(String tag, Map<Integer, Integer> map)
+    {
+        Iterator<Integer> iterator = map.keySet().iterator();
+        StringBuilder sb = new StringBuilder();
+        while(iterator.hasNext())
+        {
+
+            Integer next = iterator.next();
+            sb.append("Key: " + next + " " + "Value: " + map.get(next));
+            sb.append(map.get(next));
+            sb.append("\n");
+            log(tag, String.valueOf(map.get(next)));
         }
+        return sb.toString();
     }
 
     public static <T> void print2DArray(String tag, T[][] array2D) {
@@ -56,6 +70,10 @@ public class Helper {
     }
 
     public static String getStringFromStream(String tag, InputStream inputStream) {
+        if(inputStream == null)
+        {
+            return null;
+        }
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuffer sb = new StringBuffer();
         String line;
@@ -91,8 +109,9 @@ public class Helper {
                 results[i] = new Integer(Integer.parseInt(target[i]));
             }
             catch (NumberFormatException nfe) {
-                Log.e(tag, nfe.getMessage());
-                nfe.printStackTrace();
+//                Log.e(tag, nfe.getMessage());
+//                nfe.printStackTrace();
+//                results[i] = 0;
             }
         }
 
@@ -111,22 +130,21 @@ public class Helper {
 //                        {3, 22, 2, 24, 17}
 //                };
 
-        Map<Integer, Integer> outputMap = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> outputMap = new LinkedHashMap<>();
 
         //initialize the map
         Iterator<Integer> iterator = outputMap.keySet().iterator();
 
-        for(int i=0; i<dataArray.length; i++) {
+        for(int i=1; i<=60; i++) {
             outputMap.put(i, 0);
         }
 
         try{
             boolean bShouldAdd;
-            for(int i=0; i<dataArray.length; i++)
-            {
+            for (Map.Entry<Integer, Integer> entry : outputMap.entrySet()) {
+                int i=entry.getKey();
                 bShouldAdd = true;
-//                Helper.log(tag, String.valueOf(Arrays.asList(dataArray[i]).containsAll(Arrays.asList(userInputArray))));
-                if((userInputArray.length>0) && ! Arrays.asList(dataArray[i]).containsAll(Arrays.asList(userInputArray)))
+                if( (userInputArray.length>0) && ! Arrays.asList(dataArray[i]).containsAll(Arrays.asList(userInputArray)))
                 {
                     continue;
                 }
@@ -134,16 +152,35 @@ public class Helper {
                 {
                     for(int p=0; p<dataArray[i].length; p++) {
                         if ( ! outputMap.containsKey(dataArray[i][p])) {
-                            outputMap.put(dataArray[i][p], 1);
+                                outputMap.put(dataArray[i][p], 1);
                         } else {
                             outputMap.put(dataArray[i][p], outputMap.get(dataArray[i][p]) + 1);
                         }
                     }
                 }
             }
+//            for(int i=0; i<=60; i++)
+//            {
+//                Help er.log(tag, String.valueOf(i));
+//                bShouldAdd = true;
+//                if( (userInputArray.length>0) && ! Arrays.asList(dataArray[i]).containsAll(Arrays.asList(userInputArray)))
+//                {
+//                    continue;
+//                }
+//                if(bShouldAdd)
+//                {
+//                    for(int p=0; p<dataArray[i].length; p++) {
+//                        if ( ! outputMap.containsKey(dataArray[i][p])) {
+//                                outputMap.put(dataArray[i][p], 1);
+//                        } else {
+//                            outputMap.put(dataArray[i][p], outputMap.get(dataArray[i][p]) + 1);
+//                        }
+//                    }
+//                }
+//            }
             if(debug)
             {
-                Helper.log(tag, "HASH MAP");
+                Helper.log(tag, "HASH MAP OUTPUT");
                 Helper.printMap(tag, outputMap);
             }
             return outputMap;
@@ -171,5 +208,4 @@ public class Helper {
             return str.replaceAll("^0+", "");
         return str;
     }
-
 }

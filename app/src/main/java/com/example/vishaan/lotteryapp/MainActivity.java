@@ -8,12 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.example.vishaan.lotteryapp.api.AbstractLottery;
-import com.example.vishaan.lotteryapp.api.Cash4LifeLottery;
-
-import java.io.InputStream;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -26,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new DisplayFragment())
                     .commit();
         }
     }
@@ -67,11 +61,11 @@ public class MainActivity extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            Integer[] userInputArray = {};
-            InputStream inputStream = getResources().openRawResource(R.raw.cash4life);
-            AbstractLottery cash4Life = new Cash4LifeLottery(inputStream, userInputArray);
-            TextView tv = (TextView)rootView.findViewById(R.id.txtMain);
-            tv.setText(cash4Life.toString());
+//            Integer[] userInputArray = {};
+//            InputStream inputStream = getResources().openRawResource(R.raw.cash4life);
+//            AbstractLottery cash4Life = new Cash4LifeLottery(inputStream, userInputArray);
+//            TextView tv = (TextView)rootView.findViewById(R.id.txtMain);
+////            tv.setText(cash4Life.toString());
 
             return rootView;
         }

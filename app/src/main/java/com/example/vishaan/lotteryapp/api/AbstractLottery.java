@@ -17,23 +17,26 @@ public abstract class AbstractLottery implements IParsable {
     protected IParser parser;
     protected Map<Integer, Integer> map;
     protected Integer[] userInputArray;
-    protected String rawString;
     protected int mapSize;
+    protected String lottoName;
 
     protected AbstractLottery(InputStream inputStream, Integer[] userInputArray) {
-        this.rawString = Helper.getStringFromStream(LOG_TAG, inputStream);
         this.userInputArray = userInputArray;
     }
 
-    protected abstract IParser createParser(String dataFormat);
+    protected abstract IParser createParser(String dataFormat, InputStream inputStream);
 
-    @Override
-    public void performParse(String rawString) {
-        Map<Integer, Integer> map = Helper.getMap(LOG_TAG, this.userInputArray, this.getParser().parse(this.getRawString()));
+    public void performParse() {
+        if(this.getParser() == null)
+        {
+            return;
+        }
+        Map<Integer, Integer> map = Helper.getMap(LOG_TAG, this.userInputArray, this.getParser().parse());
         this.setMap(map);
         this.setMapSize(this.getMap().size());
         Helper.log(LOG_TAG, String.valueOf(this.getMapSize()));
     }
+
 
     public IParser getParser() {
         return this.parser;
@@ -51,24 +54,19 @@ public abstract class AbstractLottery implements IParsable {
         this.map = map;
     }
 
-    public String getRawString() {
-        return this.rawString;
-    }
-
-    public void setRawString(String rawString) {
-        this.rawString = rawString;
-    }
-
-    @Override
-    public String toString() {
-        return getRawString();
-    }
-
     public int getMapSize() {
         return this.mapSize;
     }
 
     public void setMapSize(int mapSize) {
         this.mapSize = mapSize;
+    }
+
+    public String getLottoName() {
+        return lottoName;
+    }
+
+    public void setLottoName(String lottoName) {
+        this.lottoName = lottoName;
     }
 }

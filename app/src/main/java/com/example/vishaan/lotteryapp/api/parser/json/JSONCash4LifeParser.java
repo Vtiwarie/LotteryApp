@@ -6,22 +6,25 @@ import com.example.vishaan.lotteryapp.util.Helper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+
 /**
  * Created by Vishaan on 2/7/2015.
  */
 public class JSONCash4LifeParser extends JSONParser {
 
     private static final String LOG_TAG = JSONCash4LifeParser.class.getSimpleName();
-    private static boolean debug = true;
+    private static boolean debug = false;
 
-    public JSONCash4LifeParser(String rawString) {
-        super(rawString);
+    public JSONCash4LifeParser(InputStream inputStream) {
+        super(inputStream);
     }
 
     @Override
-    public Integer[][] parse(String rawString) {
+    public Integer[][] parse() {
         try {
-            JSONObject object = new JSONObject(rawString);
+
+            JSONObject object = new JSONObject(this.getRawString());
             JSONArray data = object.getJSONArray("data");
 
             String[] winningNumbersArray = null;
