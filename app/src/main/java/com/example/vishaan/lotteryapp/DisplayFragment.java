@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,7 +23,9 @@ import com.example.vishaan.lotteryapp.util.Helper;
 import org.achartengine.GraphicalView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class DisplayFragment extends Fragment {
 
@@ -32,6 +35,10 @@ public class DisplayFragment extends Fragment {
     private ArrayList<AbstractLottery> arrLotteries = new ArrayList<>();
     private AbstractChart chart = new LotteryChart();
     private GraphicalView graphicalView;
+    private static boolean debug = true;
+    private ArrayList<NumberPicker> numberPickers;
+    private Map<Integer, Integer> mUserInputArray = new HashMap();
+    private int maxNumbers = 6;
 
     public DisplayFragment() {
     }
@@ -41,17 +48,18 @@ public class DisplayFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_display, container, false);
 
-        Integer[] userInputArray = {};
-        AbstractLottery powerBall = new PowerBallLottery(getResources().openRawResource(R.raw.powerball), userInputArray);
-        AbstractLottery cash4Life = new Cash4LifeLottery(getResources().openRawResource(R.raw.cash4life), userInputArray);
+        AbstractLottery powerBall = new PowerBallLottery(getResources().openRawResource(R.raw.powerball), mUserInputArray);
+        AbstractLottery cash4Life = new Cash4LifeLottery(getResources().openRawResource(R.raw.cash4life), mUserInputArray);
         this.arrLotteries.add(powerBall);
         this.arrLotteries.add(cash4Life);
 
+        //set up the lottery selection functionality and charts
         ArrayList<String> strLotteries = new ArrayList<>();
         Iterator<AbstractLottery> iterator = this.arrLotteries.iterator();
         while (iterator.hasNext()) {
             strLotteries.add(iterator.next().getLottoName());
         }
+
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spnChooseLotto);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, strLotteries);
@@ -62,11 +70,12 @@ public class DisplayFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 DisplayFragment.this.currentLotto = DisplayFragment.this.arrLotteries.get(i);
                 String lottoName = DisplayFragment.this.currentLotto.getLottoName();
-                Toast.makeText(DisplayFragment.this.getActivity().getApplicationContext(), lottoName + String.valueOf(i), Toast.LENGTH_LONG).show();
+//                Toast.makeText(DisplayFragment.this.getActivity().getApplicationContext(), lottoName + String.valueOf(i), Toast.LENGTH_LONG).show();
 
-                Helper.printMap(LOG_TAG, DisplayFragment.this.currentLotto.getMap());
-                DisplayFragment.this.addChartView(container, inflater.getContext());
-                Toast.makeText(inflater.getContext(), "clicked i", Toast.LENGTH_SHORT).show();
+                if (debug) {
+                    Helper.printMap(LOG_TAG, DisplayFragment.this.currentLotto.getMap());
+                }
+                DisplayFragment.this.addChartView(inflater.getContext());
             }
 
             @Override
@@ -78,10 +87,56 @@ public class DisplayFragment extends Fragment {
         return rootView;
     }
 
-    private void addChartView(ViewGroup container, Context context) {
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //set up the number choosing UI
+        maxNumbers = 6;
+        this.numberPickers = new ArrayList<>(maxNumbers);
+        LinearLayout linLayout = (LinearLayout) getActivity().findViewById(R.id.linLayout2_pickers);
+        LinearLayout pickerWrapper = new LinearLayout(getActivity().getApplicationContext());
+        pickerWrapper.setLayoutParams( new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        pickerWrapper.setOrientation(LinearLayout.HORIZONTAL);
+        NumberPicker picker;
+        for(int i=0; i<maxNumbers; i++) {
+            picker = new NumberPicker(getActivity().getApplicationContext());
+            picker.setOrientation(LinearLayout.HORIZONTAL);
+            picker.setMinValue(1);
+            picker.setMaxValue(60);
+            picker.setEnabled(false);
+            picker.setTag(i);
+            picker.setWrapSelectorWheel(true);
+
+            pickerWrapper.addView(picker);
+            this.numberPickers.add(picker);
+
+            picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                @Override
+                public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                    int offSet = (int) (numberPicker.getTag());
+                    mUserInputArray.put(offSet, newVal);
+                    if (offSet < maxNumbers) {
+                        DisplayFragment.this.numberPickers.get(++offSet).setEnabled(true);
+                    }
+
+                    DisplayFragment.this.currentLotto.setmUserInput(mUserInputArray);
+                    DisplayFragment.this.addChartView(getActivity().getApplicationContext());
+//                    Toast.makeText(getActivity().getApplicationContext(), mUserInputArray.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+        this.numberPickers.get(0).setEnabled(true);
+        linLayout.addView(pickerWrapper, new ViewGroup.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    }
+
+    private void addChartView(Context context) {
+
         //get chart view
-        LinearLayout linLayout = (LinearLayout) container.findViewById(R.id.linLayout);
+        LinearLayout linLayout = (LinearLayout) getActivity().findViewById(R.id.linLayout_chart);
         if (this.graphicalView != null) {
+//            Toast.makeText(getActivity().getApplicationContext(), "REDRAWING 1", Toast.LENGTH_SHORT).show();
             linLayout.removeView(this.graphicalView);
         }
         this.graphicalView = (GraphicalView) this.chart.buildChart(context, this.currentLotto.getMap());

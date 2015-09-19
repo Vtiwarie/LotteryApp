@@ -80,6 +80,8 @@ public class Helper {
             if (sb.length() == 0) {
                 return null;
             }
+            inputStream.mark(100);
+            inputStream.reset();
             return sb.toString();
         } catch (IOException e) {
 
@@ -112,8 +114,8 @@ public class Helper {
         return results;
     }
 
-    public static Map<Integer, Integer> getMap(String tag, Integer[] userInputArray, Integer[][] dataArray) {
-//        Integer[] userInputArray = {2, 3, 4};
+    public static Map<Integer, Integer> getMap(String tag, List<Integer> userInputArray, Integer[][] dataArray) {
+//        Integer[] mUserInput = {2, 3, 4};
 //        Integer[][] dataArray =
 //                {
 //                        {1, 2, 3, 4, 5},
@@ -136,7 +138,7 @@ public class Helper {
             for (Map.Entry<Integer, Integer> entry : outputMap.entrySet()) {
                 int i = entry.getKey();
                 bShouldAdd = true;
-                if ((userInputArray.length > 0) && !Arrays.asList(dataArray[i]).containsAll(Arrays.asList(userInputArray))) {
+                if ((userInputArray.size() > 0) && !Arrays.asList(dataArray[i]).containsAll(userInputArray)) {
                     continue;
                 }
                 if (bShouldAdd) {

@@ -4,6 +4,7 @@ import com.example.vishaan.lotteryapp.api.parser.IParser;
 import com.example.vishaan.lotteryapp.api.parser.txt.TxtPowerballParser;
 
 import java.io.InputStream;
+import java.util.Map;
 
 /**
  * Created by Vishaan on 2/4/2015.
@@ -12,12 +13,14 @@ public class PowerBallLottery extends AbstractLottery {
 
     private static final String LOG_TAG = PowerBallLottery.class.getSimpleName();
 
-    public PowerBallLottery(InputStream inputStream, Integer[] userInputArray)
+    public PowerBallLottery(InputStream inputStream, Map<Integer, Integer> userInputArray)
     {
-        super(inputStream, userInputArray);
+        super(userInputArray);
         this.setLottoName("PowerBall");
         this.setParser(this.createParser("text", inputStream));
+        this.getParser().setRawData(this.getParser().parse());
         this.performParse();
+
     }
 
     @Override

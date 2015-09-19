@@ -16,7 +16,7 @@ public abstract class JSONParser extends AbstractParser {
     public JSONParser(InputStream inputStream) {
 
         super(inputStream);
-        this.rawString = Helper.getStringFromStream(LOG_TAG, inputStream);
+        this.setRawString(Helper.getStringFromStream(LOG_TAG, inputStream));
 
     }
 
@@ -25,7 +25,9 @@ public abstract class JSONParser extends AbstractParser {
     }
 
     public void setRawString(String rawString) {
-        this.rawString = rawString;
+        if (this.rawString == null || this.rawString == "") {
+            this.rawString = rawString;
+        }
     }
 
 

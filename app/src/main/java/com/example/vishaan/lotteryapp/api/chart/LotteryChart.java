@@ -129,9 +129,11 @@ public class LotteryChart extends AbstractChart implements IDemoChart {
         String[] titles = new String[]{"2007"};
         int[] colors = new int[]{Color.CYAN};
         XYMultipleSeriesRenderer renderer = buildBarRenderer(colors);
+        renderer.setPanEnabled(false, true);
+        renderer.setPanLimits(new double[] {0, 60, 0, 1000});
         renderer.setOrientation(XYMultipleSeriesRenderer.Orientation.HORIZONTAL);
         setChartSettings(renderer, "Lottery numbers", "Month", "Numbers", 0,
-                60, 0, 20, Color.RED, Color.WHITE);
+                60, 0, 100, Color.RED, Color.WHITE);
         int length = renderer.getSeriesRendererCount();
         for (int i = 0; i < length; i++) {
             SimpleSeriesRenderer seriesRenderer = renderer.getSeriesRendererAt(i);

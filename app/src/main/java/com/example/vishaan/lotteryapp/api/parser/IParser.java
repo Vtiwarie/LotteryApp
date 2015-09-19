@@ -6,5 +6,7 @@ package com.example.vishaan.lotteryapp.api.parser;
 public interface IParser {
 //    public abstract Integer[][] parse(String string);
 
-    public abstract  Integer[][] parse();
+    Integer[][] parse();
+    Integer[][] getRawData();
+    void setRawData(Integer[][] rawData);
 }

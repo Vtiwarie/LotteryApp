@@ -7,7 +7,17 @@ import java.io.InputStream;
  */
 public abstract class AbstractParser implements IParser{
 
+    protected Integer[][] mRawData;
+
     protected InputStream inputStream;
+
+    public Integer[][] getRawData() {
+        return mRawData;
+    }
+
+    public void setRawData(Integer[][] mRawData) {
+        this.mRawData = mRawData;
+    }
 
     public  AbstractParser(InputStream inputStream) {
         this.inputStream = inputStream;

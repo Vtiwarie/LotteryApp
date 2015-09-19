@@ -61,9 +61,9 @@ public class MainActivity extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-//            Integer[] userInputArray = {};
+//            Integer[] mUserInput = {};
 //            InputStream inputStream = getResources().openRawResource(R.raw.cash4life);
-//            AbstractLottery cash4Life = new Cash4LifeLottery(inputStream, userInputArray);
+//            AbstractLottery cash4Life = new Cash4LifeLottery(inputStream, mUserInput);
 //            TextView tv = (TextView)rootView.findViewById(R.id.txtMain);
 ////            tv.setText(cash4Life.toString());
 
