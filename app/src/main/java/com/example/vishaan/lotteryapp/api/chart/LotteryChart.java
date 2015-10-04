@@ -19,7 +19,7 @@ import java.util.Set;
 /**
  * Created by Vishaan on 8/22/2015.
  */
-public class LotteryChart extends AbstractChart implements IDemoChart {
+public class LotteryChart extends AbstractChart  {
 
 
     public String getName() {
@@ -103,9 +103,8 @@ public class LotteryChart extends AbstractChart implements IDemoChart {
         return dataset;
     }
 
-    public View buildChart(Context context, Map<Integer, Integer> map, String title, String[] axisLabels)
+    public View buildChart(Context context, Map<Integer, Integer> map, String title, String[] legends, String[] axisLabels)
     {
-        String[] titles = new String[]{"Lottery Predictor"};
         int[] colors = new int[]{Color.CYAN};
         XYMultipleSeriesRenderer renderer = buildBarRenderer(colors);
         renderer.setPanEnabled(false, true);
@@ -119,7 +118,7 @@ public class LotteryChart extends AbstractChart implements IDemoChart {
             seriesRenderer.setDisplayChartValues(true);
         }
 
-        return ChartFactory.getBarChartView(context, buildBarDataset(titles, map), renderer, BarChart.Type.DEFAULT);
+        return ChartFactory.getBarChartView(context, buildBarDataset(legends, map), renderer, BarChart.Type.DEFAULT);
     }
 
     /**

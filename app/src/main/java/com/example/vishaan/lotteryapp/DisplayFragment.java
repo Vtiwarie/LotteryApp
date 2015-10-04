@@ -150,7 +150,8 @@ public class DisplayFragment extends Fragment {
         if (this.graphicalView != null) {
             linLayout.removeView(this.graphicalView);
         }
-        this.graphicalView = (GraphicalView) this.chart.buildChart(context, this.currentLotto.getMap(), this.currentLotto.getLottoName(), CHART_AXIS_LABELS);
+        String[] legends = {getResources().getString(R.string.app_name)};
+        this.graphicalView = (GraphicalView) this.chart.buildChart(context, this.currentLotto.getMap(), this.currentLotto.getLottoName(), legends, CHART_AXIS_LABELS);
 
         linLayout.addView(this.graphicalView, new ViewGroup.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
