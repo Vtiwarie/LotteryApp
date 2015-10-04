@@ -54,6 +54,6 @@ public interface IDemoChart {
 
 //  View buildChart(Context context, List<double[]> values);
 
-  View buildChart(Context context, Map<Integer, Integer> values);
+  View buildChart(Context context, Map<Integer, Integer> values, String title, String[] axisLabels);
 
 }

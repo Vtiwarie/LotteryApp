@@ -128,17 +128,14 @@ public class Helper {
 
         Map<Integer, Integer> outputMap = new LinkedHashMap<>();
 
-        //initialize the map
-        for (int i = 1; i <= 60; i++) {
-            outputMap.put(i, 0);
-        }
+        initializeMap(tag, outputMap);
 
         try {
             boolean bShouldAdd;
             for (Map.Entry<Integer, Integer> entry : outputMap.entrySet()) {
                 int i = entry.getKey();
                 bShouldAdd = true;
-                if ((userInputArray.size() > 0) && !Arrays.asList(dataArray[i]).containsAll(userInputArray)) {
+                if (( ! userInputArray.isEmpty()) && !Arrays.asList(dataArray[i]).containsAll(userInputArray)) {
                     continue;
                 }
                 if (bShouldAdd) {
@@ -160,6 +157,13 @@ public class Helper {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void initializeMap(String tag, Map<Integer, Integer> map) {
+        //initialize the map
+        for (int i = 1; i <= 60; i++) {
+            map.put(i, 0);
+        }
     }
 
     public static String[] explode(String target, String glue) {

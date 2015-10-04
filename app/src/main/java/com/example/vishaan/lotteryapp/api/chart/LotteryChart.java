@@ -31,28 +31,6 @@ public class LotteryChart extends AbstractChart implements IDemoChart {
     }
 
     /**
-     * Builds a bar multiple series renderer to use the provided colors.
-     *
-     * @param colors the series renderers colors
-     * @return the bar multiple series renderer
-     */
-    protected XYMultipleSeriesRenderer buildBarRenderer(int[] colors) {
-        XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-        renderer.setAxisTitleTextSize(16);
-        renderer.setChartTitleTextSize(20);
-        renderer.setLabelsTextSize(15);
-        renderer.setLegendTextSize(15);
-        renderer.setBarSpacing(1.5);
-        int length = colors.length;
-        for (int i = 0; i < length; i++) {
-            SimpleSeriesRenderer r = new SimpleSeriesRenderer();
-            r.setColor(colors[i]);
-            renderer.addSeriesRenderer(r);
-        }
-        return renderer;
-    }
-
-    /**
      * Builds a bar multiple series dataset using the provided values.
      *
      * @param titles the series titles
@@ -110,29 +88,30 @@ public class LotteryChart extends AbstractChart implements IDemoChart {
     protected XYMultipleSeriesDataset buildBarDataset(String[] titles, Map<Integer, Integer> map) {
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         int length = titles.length;
+        CategorySeries series[] = new CategorySeries[titles.length];
         for (int i = 0; i < length; i++) {
-            CategorySeries series = new CategorySeries(titles[i]);
+            series[i] = new CategorySeries(titles[i]);
             Set<Integer> keys = map.keySet();
             Iterator iterator = keys.iterator();
             while(iterator.hasNext())
             {
                 int key = (int)iterator.next();
-                series.add(String.valueOf(key), map.get(key));
+                series[i].add(String.valueOf(key), map.get(key));
             }
-            dataset.addSeries(series.toXYSeries());
+            dataset.addSeries(series[i].toXYSeries());
         }
         return dataset;
     }
 
-    public View buildChart(Context context, Map<Integer, Integer> map)
+    public View buildChart(Context context, Map<Integer, Integer> map, String title, String[] axisLabels)
     {
-        String[] titles = new String[]{"2007"};
+        String[] titles = new String[]{"Lottery Predictor"};
         int[] colors = new int[]{Color.CYAN};
         XYMultipleSeriesRenderer renderer = buildBarRenderer(colors);
         renderer.setPanEnabled(false, true);
         renderer.setPanLimits(new double[] {0, 60, 0, 1000});
         renderer.setOrientation(XYMultipleSeriesRenderer.Orientation.HORIZONTAL);
-        setChartSettings(renderer, "Lottery numbers", "Month", "Numbers", 0,
+        setChartSettings(renderer, title, axisLabels[0], axisLabels[1], 0,
                 60, 0, 100, Color.RED, Color.WHITE);
         int length = renderer.getSeriesRendererCount();
         for (int i = 0; i < length; i++) {
@@ -143,5 +122,27 @@ public class LotteryChart extends AbstractChart implements IDemoChart {
         return ChartFactory.getBarChartView(context, buildBarDataset(titles, map), renderer, BarChart.Type.DEFAULT);
     }
 
+    /**
+     * Builds a bar multiple series renderer to use the provided colors.
+     *
+     * @param colors the series renderers colors
+     * @return the bar multiple series renderer
+     */
+    protected XYMultipleSeriesRenderer buildBarRenderer(int[] colors) {
+        XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
+        renderer.setAxisTitleTextSize(16);
+        renderer.setChartTitleTextSize(20);
+        renderer.setLabelsTextSize(15);
+        renderer.setLegendTextSize(15);
+        renderer.setBarSpacing(1);
+        renderer.setXLabels(20);
+        int length = colors.length;
+        for (int i = 0; i < length; i++) {
+            SimpleSeriesRenderer r = new SimpleSeriesRenderer();
+            r.setColor(colors[i]);
+            renderer.addSeriesRenderer(r);
+        }
+        return renderer;
+    }
 }
 

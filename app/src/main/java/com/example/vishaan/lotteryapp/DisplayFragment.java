@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
@@ -37,8 +38,11 @@ public class DisplayFragment extends Fragment {
     private GraphicalView graphicalView;
     private static boolean debug = true;
     private ArrayList<NumberPicker> numberPickers;
-    private Map<Integer, Integer> mUserInputArray = new HashMap();
+    private Map<Integer, Integer> mUserInput = new HashMap();
     private int maxNumbers = 6;
+
+    //Constants
+    private static final String[] CHART_AXIS_LABELS = {"Choose your number", "Frequency"};
 
     public DisplayFragment() {
     }
@@ -48,8 +52,8 @@ public class DisplayFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_display, container, false);
 
-        AbstractLottery powerBall = new PowerBallLottery(getResources().openRawResource(R.raw.powerball), mUserInputArray);
-        AbstractLottery cash4Life = new Cash4LifeLottery(getResources().openRawResource(R.raw.cash4life), mUserInputArray);
+        AbstractLottery powerBall = new PowerBallLottery(getResources().openRawResource(R.raw.powerball), mUserInput);
+        AbstractLottery cash4Life = new Cash4LifeLottery(getResources().openRawResource(R.raw.cash4life), mUserInput);
         this.arrLotteries.add(powerBall);
         this.arrLotteries.add(cash4Life);
 
@@ -62,15 +66,14 @@ public class DisplayFragment extends Fragment {
 
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spnChooseLotto);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, strLotteries);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), R.layout.custom_spinner_item, strLotteries);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 DisplayFragment.this.currentLotto = DisplayFragment.this.arrLotteries.get(i);
                 String lottoName = DisplayFragment.this.currentLotto.getLottoName();
-//                Toast.makeText(DisplayFragment.this.getActivity().getApplicationContext(), lottoName + String.valueOf(i), Toast.LENGTH_LONG).show();
 
                 if (debug) {
                     Helper.printMap(LOG_TAG, DisplayFragment.this.currentLotto.getMap());
@@ -84,6 +87,22 @@ public class DisplayFragment extends Fragment {
             }
         });
 
+        Button resetButton = (Button) rootView.findViewById(R.id.btnReset);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mUserInput.clear();
+                DisplayFragment.this.currentLotto.setmUserInput(mUserInput);
+                for(NumberPicker picker : DisplayFragment.this.numberPickers) {
+                    picker.setValue(1);
+                    picker.setEnabled(false);
+                    picker.requestFocus();
+                }
+                DisplayFragment.this.numberPickers.get(0).setEnabled(true);
+                DisplayFragment.this.addChartView(inflater.getContext());
+            }
+        });
+
         return rootView;
     }
 
@@ -94,9 +113,6 @@ public class DisplayFragment extends Fragment {
         maxNumbers = 6;
         this.numberPickers = new ArrayList<>(maxNumbers);
         LinearLayout linLayout = (LinearLayout) getActivity().findViewById(R.id.linLayout2_pickers);
-        LinearLayout pickerWrapper = new LinearLayout(getActivity().getApplicationContext());
-        pickerWrapper.setLayoutParams( new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        pickerWrapper.setOrientation(LinearLayout.HORIZONTAL);
         NumberPicker picker;
         for(int i=0; i<maxNumbers; i++) {
             picker = new NumberPicker(getActivity().getApplicationContext());
@@ -105,30 +121,26 @@ public class DisplayFragment extends Fragment {
             picker.setMaxValue(60);
             picker.setEnabled(false);
             picker.setTag(i);
-            picker.setWrapSelectorWheel(true);
 
-            pickerWrapper.addView(picker);
+            linLayout.addView(picker);
             this.numberPickers.add(picker);
 
             picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                 @Override
-                public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-                    int offSet = (int) (numberPicker.getTag());
-                    mUserInputArray.put(offSet, newVal);
+                public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                    int offSet = (int) (picker.getTag());
+                    mUserInput.put(offSet, newVal);
                     if (offSet < maxNumbers) {
                         DisplayFragment.this.numberPickers.get(++offSet).setEnabled(true);
                     }
 
-                    DisplayFragment.this.currentLotto.setmUserInput(mUserInputArray);
+                    DisplayFragment.this.currentLotto.setmUserInput(mUserInput);
                     DisplayFragment.this.addChartView(getActivity().getApplicationContext());
-//                    Toast.makeText(getActivity().getApplicationContext(), mUserInputArray.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
 
         }
         this.numberPickers.get(0).setEnabled(true);
-        linLayout.addView(pickerWrapper, new ViewGroup.LayoutParams
-                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
     private void addChartView(Context context) {
@@ -136,10 +148,9 @@ public class DisplayFragment extends Fragment {
         //get chart view
         LinearLayout linLayout = (LinearLayout) getActivity().findViewById(R.id.linLayout_chart);
         if (this.graphicalView != null) {
-//            Toast.makeText(getActivity().getApplicationContext(), "REDRAWING 1", Toast.LENGTH_SHORT).show();
             linLayout.removeView(this.graphicalView);
         }
-        this.graphicalView = (GraphicalView) this.chart.buildChart(context, this.currentLotto.getMap());
+        this.graphicalView = (GraphicalView) this.chart.buildChart(context, this.currentLotto.getMap(), this.currentLotto.getLottoName(), CHART_AXIS_LABELS);
 
         linLayout.addView(this.graphicalView, new ViewGroup.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
