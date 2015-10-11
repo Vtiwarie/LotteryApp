@@ -16,11 +16,15 @@ import java.util.Map;
  * Created by Vishaan on 2/2/2015.
  */
 public class Helper {
+
+    private static boolean debug = false;
+
     public static void log(String tag, String message) {
+        if( ! debug ) {
+            return;
+        }
         Log.v(tag, message);
     }
-
-    private static boolean debug = true;
 
     public static <E> void printList(String tag, List<E> list) {
         Iterator<E> iterator = list.iterator();
@@ -50,7 +54,9 @@ public class Helper {
             sb.append("Key: " + next + " " + "Value: " + map.get(next));
             sb.append(map.get(next));
             sb.append("\n");
-            log(tag, String.valueOf(map.get(next)));
+            if (debug) {
+                log(tag, String.valueOf(map.get(next)));
+            }
         }
         return sb.toString();
     }

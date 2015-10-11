@@ -137,7 +137,14 @@ public class DisplayFragment extends Fragment {
                 @Override
                 public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                     int offSet = (int) (picker.getTag());
-                    mUserInput.put(offSet, newVal);
+
+                    if (DisplayFragment.this.mUserInput.containsValue(newVal)) {
+                        picker.setValue(newVal + 1);
+                        mUserInput.put(offSet, newVal);
+                    } else {
+                        mUserInput.put(offSet, newVal);
+                    }
+
                     if (offSet < maxNumbers) {
                         DisplayFragment.this.numberPickers.get(++offSet).setEnabled(true);
                     }
@@ -146,7 +153,6 @@ public class DisplayFragment extends Fragment {
                     DisplayFragment.this.addChartView(getActivity().getApplicationContext());
                 }
             });
-
         }
         this.numberPickers.get(0).setEnabled(true);
     }
