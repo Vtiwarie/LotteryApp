@@ -40,6 +40,7 @@ public class DisplayFragment extends Fragment {
     private ArrayList<NumberPicker> numberPickers;
     private Map<Integer, Integer> mUserInput = new HashMap();
     private int maxNumbers = 6;
+    private Context mContext;
 
     //Constants
     private static final String[] CHART_AXIS_LABELS = {"Choose your number", "Frequency"};
@@ -51,6 +52,7 @@ public class DisplayFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_display, container, false);
+        this.mContext = inflater.getContext();
 
         AbstractLottery powerBall = new PowerBallLottery(getResources().openRawResource(R.raw.powerball), mUserInput);
         AbstractLottery cash4Life = new Cash4LifeLottery(getResources().openRawResource(R.raw.cash4life), mUserInput);
@@ -73,7 +75,7 @@ public class DisplayFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 DisplayFragment.this.currentLotto = DisplayFragment.this.arrLotteries.get(i);
-                String lottoName = DisplayFragment.this.currentLotto.getLottoName();
+                resetNumbers();
 
                 if (debug) {
                     Helper.printMap(LOG_TAG, DisplayFragment.this.currentLotto.getMap());
@@ -91,19 +93,25 @@ public class DisplayFragment extends Fragment {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUserInput.clear();
-                DisplayFragment.this.currentLotto.setmUserInput(mUserInput);
-                for(NumberPicker picker : DisplayFragment.this.numberPickers) {
-                    picker.setValue(1);
-                    picker.setEnabled(false);
-                    picker.requestFocus();
-                }
-                DisplayFragment.this.numberPickers.get(0).setEnabled(true);
-                DisplayFragment.this.addChartView(inflater.getContext());
+                resetNumbers();
             }
         });
 
         return rootView;
+    }
+
+    private void resetNumbers() {
+        mUserInput.clear();
+        this.currentLotto.setmUserInput(mUserInput);
+        for(NumberPicker picker : this.numberPickers) {
+            picker.setValue(0);
+            picker.setEnabled(false);
+        }
+
+        NumberPicker firstPicker = this.numberPickers.get(0);
+        firstPicker.setEnabled(true);
+        firstPicker.requestFocus();
+        this.addChartView(this.mContext);
     }
 
     @Override
