@@ -139,7 +139,11 @@ public class DisplayFragment extends Fragment {
                     int offSet = (int) (picker.getTag());
 
                     if (DisplayFragment.this.mUserInput.containsValue(newVal)) {
-                        picker.setValue(newVal + 1);
+                        if (oldVal < newVal) {
+                            picker.setValue(newVal + 1);
+                        } else {
+                            picker.setValue(newVal - 1);
+                        }
                         mUserInput.put(offSet, newVal);
                     } else {
                         mUserInput.put(offSet, newVal);
