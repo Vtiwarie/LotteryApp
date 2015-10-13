@@ -137,17 +137,7 @@ public class DisplayFragment extends Fragment {
                 @Override
                 public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                     int offSet = (int) (picker.getTag());
-
-                    if (DisplayFragment.this.mUserInput.containsValue(newVal)) {
-                        if (oldVal < newVal) {
-                            picker.setValue(newVal + 1);
-                        } else {
-                            picker.setValue(newVal - 1);
-                        }
-                        mUserInput.put(offSet, newVal);
-                    } else {
-                        mUserInput.put(offSet, newVal);
-                    }
+                    mUserInput.put(offSet, newVal);
 
                     if (offSet < maxNumbers) {
                         DisplayFragment.this.numberPickers.get(++offSet).setEnabled(true);
