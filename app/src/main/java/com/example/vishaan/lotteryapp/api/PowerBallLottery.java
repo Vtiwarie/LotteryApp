@@ -12,6 +12,7 @@ import java.util.Map;
 public class PowerBallLottery extends AbstractLottery {
 
     private static final String LOG_TAG = PowerBallLottery.class.getSimpleName();
+    private static final String URL = "http://www.powerball.com/powerball/winnums-text.txt";
 
     public PowerBallLottery(InputStream inputStream, Map<Integer, Integer> userInputArray)
     {
@@ -21,6 +22,10 @@ public class PowerBallLottery extends AbstractLottery {
         this.getParser().setRawData(this.getParser().parse());
         this.performParse();
 
+    }
+
+    public String getUrl() {
+        return URL;
     }
 
     @Override

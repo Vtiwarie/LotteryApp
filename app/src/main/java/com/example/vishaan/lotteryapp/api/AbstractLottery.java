@@ -36,25 +36,16 @@ public abstract class AbstractLottery implements IParsable {
     }
 
     protected abstract IParser createParser(String dataFormat, InputStream inputStream);
+    public abstract String getUrl();
 
     public void performParse() {
         if(this.getParser() == null)
         {
             return;
         }
-//        Log.v(LOG_TAG, "RAW DATA");
-        Integer[][] f = this.getParser().getRawData();
-//        for(Integer[] i : f) {
-//            Helper.log(LOG_TAG, Arrays.toString(i));
-//        }
-
-//        Helper.log("output", Arrays.toString(this.getmUserInput().values()));
         Map<Integer, Integer> map = Helper.getMap(LOG_TAG, new ArrayList<>(this.getmUserInput().values()), this.getParser().getRawData());
         this.setMap(map);
-//        Helper.printMap(LOG_TAG, this.getMap());
-
         this.setMapSize(this.getMap().size());
-//        Helper.log(LOG_TAG, String.valueOf(this.getMapSize()));
     }
 
 

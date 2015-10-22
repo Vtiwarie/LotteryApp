@@ -12,6 +12,7 @@ import java.util.Map;
 public class Cash4LifeLottery extends AbstractLottery {
 
     private static final String LOG_TAG = Cash4LifeLottery.class.getSimpleName();
+    private static final String URL = "";
 
     public Cash4LifeLottery(InputStream inputStream, Map<Integer, Integer> userInputArray)
     {
@@ -22,6 +23,9 @@ public class Cash4LifeLottery extends AbstractLottery {
         this.performParse();
     }
 
+    public String getUrl() {
+        return URL;
+    }
 
     protected IParser createParser(String dataFormat, InputStream inputStream) {
         if(dataFormat.equals("json")) {

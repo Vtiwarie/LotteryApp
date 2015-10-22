@@ -1,9 +1,14 @@
 package com.example.vishaan.lotteryapp;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,6 +28,12 @@ import com.example.vishaan.lotteryapp.util.Helper;
 
 import org.achartengine.GraphicalView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,7 +41,7 @@ import java.util.Map;
 
 public class DisplayFragment extends Fragment {
 
-    private static final String LOG_TAG = PowerBallLottery.class.getSimpleName();
+    private static final String LOG_TAG = DisplayFragment.class.getSimpleName();
 
     private AbstractLottery currentLotto;
     private ArrayList<AbstractLottery> arrLotteries = new ArrayList<>();
@@ -46,6 +57,29 @@ public class DisplayFragment extends Fragment {
     private static final String[] CHART_AXIS_LABELS = {"Choose your number", "Frequency"};
 
     public DisplayFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.displayfragment, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
+            case R.id.action_refresh:
+                updateData();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -164,5 +198,95 @@ public class DisplayFragment extends Fragment {
         linLayout.addView(this.graphicalView, new ViewGroup.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+    }
+
+    private void updateData() {
+        FetchLotteryData task = new FetchLotteryData();
+        task.execute(this.currentLotto.getUrl());
+    }
+
+    public class FetchLotteryData extends AsyncTask<String, Void, String>
+    {
+        @Override
+        protected String doInBackground(String... params) {
+            // If there's no zip code, there's nothing to look up.  Verify size of params.
+            if (params.length == 0) {
+                return null;
+            }
+
+            String URL;
+            if(params[0] == null || params[0] == "") {
+                return "";
+            } else {
+                URL = params[0];
+            }
+
+            // These two need to be declared outside the try/catch
+            // so that they can be closed in the finally block.
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
+
+            try {
+
+                URL url = new URL(URL);
+
+                // Create the request to OpenWeatherMap, and open the connection
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+
+                // Read the input stream into a String
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+                if (inputStream == null) {
+                    // Nothing to do.
+                    return null;
+                }
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
+                    // But it does make debugging a *lot* easier if you print out the completed
+                    // buffer for debugging.
+                    buffer.append(line + "\n");
+                }
+
+                Log.v(LOG_TAG, buffer.toString());
+                if (buffer.length() == 0) {
+                    // Stream was empty.  No point in parsing.
+                    return null;
+                }
+                Log.v(LOG_TAG, buffer.toString());
+                return buffer.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e(LOG_TAG, "Error ", e);
+                // If the code didn't successfully get the weather data, there's no point in attemping
+                // to parse it.
+                return null;
+            } catch(Exception e) {
+                e.printStackTrace();
+                Log.e(LOG_TAG, "Error ", e);
+                return null;
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (final IOException e) {
+                        e.printStackTrace();
+                        Log.e(LOG_TAG, "Error closing stream", e);
+                    }
+                }
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
     }
 }
