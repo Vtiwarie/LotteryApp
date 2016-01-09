@@ -1,5 +1,7 @@
 package com.example.vishaan.lotteryapp.api.parser;
 
+import android.content.Context;
+
 import java.io.InputStream;
 
 /**
@@ -11,6 +13,8 @@ public abstract class AbstractParser implements IParser{
 
     protected InputStream inputStream;
 
+    protected Context mContext;
+
     public Integer[][] getRawData() {
         return mRawData;
     }
@@ -19,8 +23,9 @@ public abstract class AbstractParser implements IParser{
         this.mRawData = mRawData;
     }
 
-    public  AbstractParser(InputStream inputStream) {
+    public  AbstractParser(Context context, InputStream inputStream) {
         this.inputStream = inputStream;
+        this.mContext = context;
     }
 
     public InputStream getInputStream() {
@@ -29,5 +34,13 @@ public abstract class AbstractParser implements IParser{
 
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
+    }
+
+    public Context getContext() {
+        return mContext;
+    }
+
+    public void setContext(Context mContext) {
+        this.mContext = mContext;
     }
 }

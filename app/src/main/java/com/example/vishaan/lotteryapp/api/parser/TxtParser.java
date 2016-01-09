@@ -1,5 +1,7 @@
 package com.example.vishaan.lotteryapp.api.parser;
 
+import android.content.Context;
+
 import java.io.InputStream;
 
 /**
@@ -7,8 +9,8 @@ import java.io.InputStream;
  */
 public abstract class TxtParser extends AbstractParser {
 
-    public TxtParser(InputStream inputStream) {
-        super(inputStream);
+    public TxtParser(Context context, InputStream inputStream) {
+        super(context, inputStream);
     }
 
 

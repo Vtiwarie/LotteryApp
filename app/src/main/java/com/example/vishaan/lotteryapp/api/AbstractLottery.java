@@ -1,5 +1,7 @@
 package com.example.vishaan.lotteryapp.api;
 
+import android.content.Context;
+
 import com.example.vishaan.lotteryapp.api.parser.IParsable;
 import com.example.vishaan.lotteryapp.api.parser.IParser;
 import com.example.vishaan.lotteryapp.util.Helper;
@@ -21,6 +23,21 @@ public abstract class AbstractLottery implements IParsable {
     protected Map<Integer, Integer> mUserInput = new HashMap<>();
     protected int mapSize;
     protected String lottoName;
+    protected String mFileName = "";
+    protected Context mContext;
+
+    public String getFileName() {
+        return mFileName;
+    }
+
+    public void setFileName(String mFileName) {
+        this.mFileName = mFileName;
+    }
+
+    protected AbstractLottery(Context context, Map<Integer, Integer> userInputArray) {
+        this.mUserInput = userInputArray;
+        this.mContext = context;
+    }
 
     public Map<Integer, Integer> getmUserInput() {
         return mUserInput;
@@ -31,12 +48,9 @@ public abstract class AbstractLottery implements IParsable {
         this.performParse();
     }
 
-    protected AbstractLottery(Map<Integer, Integer> userInputArray) {
-        this.mUserInput = userInputArray;
-    }
-
-    protected abstract IParser createParser(String dataFormat, InputStream inputStream);
+    public abstract IParser createParser(Context context, String dataFormat, InputStream inputStream);
     public abstract String getUrl();
+
 
     public void performParse() {
         if(this.getParser() == null)
@@ -47,7 +61,6 @@ public abstract class AbstractLottery implements IParsable {
         this.setMap(map);
         this.setMapSize(this.getMap().size());
     }
-
 
     public IParser getParser() {
         return this.parser;

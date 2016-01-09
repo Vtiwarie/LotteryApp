@@ -1,5 +1,7 @@
 package com.example.vishaan.lotteryapp.api.parser;
 
+import android.content.Context;
+
 import com.example.vishaan.lotteryapp.util.Helper;
 
 import java.io.InputStream;
@@ -13,9 +15,9 @@ public abstract class JSONParser extends AbstractParser {
 
     protected String rawString;
 
-    public JSONParser(InputStream inputStream) {
+    public JSONParser(Context context, InputStream inputStream) {
 
-        super(inputStream);
+        super(context, inputStream);
         this.setRawString(Helper.getStringFromStream(LOG_TAG, inputStream));
 
     }

@@ -1,12 +1,15 @@
 package com.example.vishaan.lotteryapp.util;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,30 +20,27 @@ import java.util.Map;
  */
 public class Helper {
 
-    private static boolean debug = false;
+    private static final String LOG_TAG = Helper.class.getSimpleName();
 
-    public static void log(String tag, String message) {
-        if( ! debug ) {
-            return;
-        }
-        Log.v(tag, message);
+    public static void log(String message) {
+        Log.v(LOG_TAG, message);
+    }
+
+    public static void t(Context context, String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT);
     }
 
     public static <E> void printList(String tag, List<E> list) {
         Iterator<E> iterator = list.iterator();
 
         while (iterator.hasNext()) {
-            if (debug) {
-                log(tag, String.valueOf(iterator.next()));
-            }
+//            log(tag, String.valueOf(iterator.next()));
         }
     }
 
     public static void printMap(String tag, Map<Integer, Integer> map) {
-        if (debug) {
-            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                log(tag, entry.getKey() + " = " + entry.getValue());
-            }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+//            log(tag, entry.getKey() + " = " + entry.getValue());
         }
     }
 
@@ -54,9 +54,6 @@ public class Helper {
             sb.append("Key: " + next + " " + "Value: " + map.get(next));
             sb.append(map.get(next));
             sb.append("\n");
-            if (debug) {
-                log(tag, String.valueOf(map.get(next)));
-            }
         }
         return sb.toString();
     }
@@ -64,9 +61,7 @@ public class Helper {
     public static <T> void print2DArray(String tag, T[][] array2D) {
         for (int i = 0; i < array2D.length; i++) {
             for (int j = 0; j < array2D[i].length; j++) {
-                if (debug) {
-                    log(tag, array2D[i][j].toString());
-                }
+//                log(tag, array2D[i][j].toString());
             }
         }
     }
@@ -98,7 +93,7 @@ public class Helper {
                 }
 
             } catch (IOException e) {
-                Helper.log(tag, e.getMessage());
+//                Helper.log(tag, e.getMessage());
             }
         }
         return null;
@@ -132,6 +127,10 @@ public class Helper {
 //                        {3, 22, 2, 24, 17}
 //                };
 
+        if(dataArray == null) {
+            return new HashMap<Integer, Integer>();
+        }
+
         Map<Integer, Integer> outputMap = new LinkedHashMap<>();
 
         initializeMap(tag, outputMap);
@@ -154,10 +153,8 @@ public class Helper {
                     }
                 }
             }
-            if (debug) {
-                Helper.log(tag, "HASH MAP OUTPUT");
-                Helper.printMap(tag, outputMap);
-            }
+//            Helper.log(tag, "HASH MAP OUTPUT");
+            Helper.printMap(tag, outputMap);
             return outputMap;
         } catch (Exception e) {
             e.printStackTrace();

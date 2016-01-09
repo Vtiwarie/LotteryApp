@@ -1,5 +1,7 @@
 package com.example.vishaan.lotteryapp.api;
 
+import android.content.Context;
+
 import com.example.vishaan.lotteryapp.api.parser.IParser;
 import com.example.vishaan.lotteryapp.api.parser.json.JSONCash4LifeParser;
 
@@ -12,13 +14,15 @@ import java.util.Map;
 public class Cash4LifeLottery extends AbstractLottery {
 
     private static final String LOG_TAG = Cash4LifeLottery.class.getSimpleName();
-    private static final String URL = "";
+    private static final String URL = "https://data.ny.gov/api/views/kwxv-fwze/rows.json?accessType=DOWNLOAD";
 
-    public Cash4LifeLottery(InputStream inputStream, Map<Integer, Integer> userInputArray)
+    public Cash4LifeLottery(Context context, Map<Integer, Integer> userInputArray)
     {
-        super(userInputArray);
+        super(context, userInputArray);
         this.setLottoName("Cash4Life");
-        this.setParser(this.createParser("json", inputStream));
+        this.setFileName("Cash4Life.json");
+        this.createInternalFile("");
+        this.setParser(this.createParser(this.mContext, "json", this.getRawInputStream()));
         this.getParser().setRawData((this.getParser()).parse());
         this.performParse();
     }
@@ -27,9 +31,9 @@ public class Cash4LifeLottery extends AbstractLottery {
         return URL;
     }
 
-    protected IParser createParser(String dataFormat, InputStream inputStream) {
+    public IParser createParser(Context context, String dataFormat, InputStream inputStream) {
         if(dataFormat.equals("json")) {
-            return new JSONCash4LifeParser(inputStream);
+            return new JSONCash4LifeParser(context, inputStream);
         }
         else if(dataFormat.equals("xml")) {
             return null;

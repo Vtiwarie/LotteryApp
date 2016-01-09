@@ -1,5 +1,7 @@
 package com.example.vishaan.lotteryapp.api.parser.json;
 
+import android.content.Context;
+
 import com.example.vishaan.lotteryapp.api.parser.JSONParser;
 import com.example.vishaan.lotteryapp.util.Helper;
 
@@ -16,8 +18,8 @@ public class JSONCash4LifeParser extends JSONParser {
     private static final String LOG_TAG = JSONCash4LifeParser.class.getSimpleName();
     private static boolean debug = false;
 
-    public JSONCash4LifeParser(InputStream inputStream) {
-        super(inputStream);
+    public JSONCash4LifeParser(Context context, InputStream inputStream) {
+        super(context, inputStream);
     }
 
     @Override
@@ -37,14 +39,14 @@ public class JSONCash4LifeParser extends JSONParser {
                 winningNumbers = winningEntryArray.getString(9);
                 if(debug)
                 {
-                    Helper.log(LOG_TAG, "WINNING NUMBERS " + winningNumbers);
+//                    Helper.log(LOG_TAG, "WINNING NUMBERS " + winningNumbers);
                 }
                 winningNumbersArray = Helper.explode(winningNumbers, " ");
                 dataArray[i] = Helper.converStringToIntegerArray(LOG_TAG, winningNumbersArray);
             }
             if(debug)
             {
-                Helper.log(LOG_TAG, "DATA ARRAY");
+//                Helper.log(LOG_TAG, "DATA ARRAY");
 //                Helper.print2DArray(LOG_TAG, dataArray);
             }
             return dataArray;
