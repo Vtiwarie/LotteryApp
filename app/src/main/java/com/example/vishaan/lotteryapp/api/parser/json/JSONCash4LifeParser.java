@@ -8,8 +8,6 @@ import com.example.vishaan.lotteryapp.util.Helper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-
 /**
  * Created by Vishaan on 2/7/2015.
  */
@@ -18,8 +16,8 @@ public class JSONCash4LifeParser extends JSONParser {
     private static final String LOG_TAG = JSONCash4LifeParser.class.getSimpleName();
     private static boolean debug = false;
 
-    public JSONCash4LifeParser(Context context, InputStream inputStream) {
-        super(context, inputStream);
+    public JSONCash4LifeParser(Context context) {
+        super(context);
     }
 
     @Override
@@ -42,7 +40,7 @@ public class JSONCash4LifeParser extends JSONParser {
 //                    Helper.log(LOG_TAG, "WINNING NUMBERS " + winningNumbers);
                 }
                 winningNumbersArray = Helper.explode(winningNumbers, " ");
-                dataArray[i] = Helper.converStringToIntegerArray(LOG_TAG, winningNumbersArray);
+                dataArray[i] = Helper.converStringToIntegerArray(winningNumbersArray);
             }
             if(debug)
             {

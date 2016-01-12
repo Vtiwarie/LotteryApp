@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.example.vishaan.lotteryapp.util.Helper;
 
-import java.io.InputStream;
-
 /**
  * Created by Vishaan on 2/4/2015.
  */
@@ -15,10 +13,10 @@ public abstract class JSONParser extends AbstractParser {
 
     protected String rawString;
 
-    public JSONParser(Context context, InputStream inputStream) {
+    public JSONParser(Context context) {
 
-        super(context, inputStream);
-        this.setRawString(Helper.getStringFromStream(LOG_TAG, inputStream));
+        super(context);
+        this.setRawString(Helper.getStringFromStream(LOG_TAG));
 
     }
 

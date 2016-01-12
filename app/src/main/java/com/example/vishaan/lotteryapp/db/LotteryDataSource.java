@@ -54,9 +54,9 @@ public class LotteryDataSource {
         return ts;
     }
 
-    public List<PowerBallDrawing> getPowerBalls(Date dateFrom, Date dateTo) {
+    public List<AbstractDrawing> getPowerBalls(Date dateFrom, Date dateTo) {
         open();
-        List<PowerBallDrawing> drawings = new ArrayList<>();
+        List<AbstractDrawing> drawings = new ArrayList<>();
         Cursor cursor = db.query(
                 Contracts.PowerBall.TABLE_NAME,
                 null,
@@ -68,6 +68,8 @@ public class LotteryDataSource {
                 null
         );
 
+        Helper.log("# Entries found: " + cursor.getCount());
+
         while(cursor.moveToNext()) {
             PowerBallDrawing drawing = new PowerBallDrawing();
             Date date = new Date();
@@ -76,9 +78,8 @@ public class LotteryDataSource {
             drawing.setNumbers(AbstractDrawing.convertJSONToNumbers(cursor.getString(cursor.getColumnIndex(Contracts.PowerBall.Columns.PB_NUMBERS))));
             drawing.setPowerBall(cursor.getInt(cursor.getColumnIndex(Contracts.PowerBall.Columns.PB_POWERBALL)));
             drawings.add(drawing);
-            Helper.log("Powerball Drawing: " + drawing);
+//            Helper.log("Powerball Drawing: " + drawing);
         }
-        Helper.log("# Entries found: " + cursor.getCount());
         cursor.close();
         close();
         return drawings;

@@ -23,8 +23,7 @@ public abstract class AbstractParser implements IParser{
         this.mRawData = mRawData;
     }
 
-    public  AbstractParser(Context context, InputStream inputStream) {
-        this.inputStream = inputStream;
+    public  AbstractParser(Context context) {
         this.mContext = context;
     }
 

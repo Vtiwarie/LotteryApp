@@ -107,11 +107,11 @@ public class LotteryChart extends AbstractChart  {
     {
         int[] colors = new int[]{Color.CYAN};
         XYMultipleSeriesRenderer renderer = buildBarRenderer(colors);
-        renderer.setPanEnabled(false, true);
-        renderer.setPanLimits(new double[] {0, 60, 0, 1000});
+        renderer.setPanEnabled(true, true);
+        renderer.setPanLimits(new double[] {0, 69, 0, 1000});
         renderer.setOrientation(XYMultipleSeriesRenderer.Orientation.HORIZONTAL);
         setChartSettings(renderer, title, axisLabels[0], axisLabels[1], 0,
-                60, 0, 100, Color.RED, Color.WHITE);
+                69, 0, 250, Color.RED, Color.WHITE);
         int length = renderer.getSeriesRendererCount();
         for (int i = 0; i < length; i++) {
             SimpleSeriesRenderer seriesRenderer = renderer.getSeriesRendererAt(i);

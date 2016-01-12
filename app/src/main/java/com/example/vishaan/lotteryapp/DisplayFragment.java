@@ -1,10 +1,8 @@
 package com.example.vishaan.lotteryapp;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,26 +15,21 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.example.vishaan.lotteryapp.api.AbstractDrawing;
 import com.example.vishaan.lotteryapp.api.AbstractLottery;
-import com.example.vishaan.lotteryapp.api.Cash4LifeLottery;
 import com.example.vishaan.lotteryapp.api.PowerBallLottery;
 import com.example.vishaan.lotteryapp.api.chart.AbstractChart;
 import com.example.vishaan.lotteryapp.api.chart.LotteryChart;
-import com.example.vishaan.lotteryapp.util.Helper;
+import com.example.vishaan.lotteryapp.db.LotteryDataSource;
+import com.example.vishaan.lotteryapp.services.FetchLottoData;
 
 import org.achartengine.GraphicalView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class DisplayFragment extends Fragment {
@@ -47,16 +40,17 @@ public class DisplayFragment extends Fragment {
     private ArrayList<AbstractLottery> arrLotteries = new ArrayList<>();
     private AbstractChart chart = new LotteryChart();
     private GraphicalView graphicalView;
-    private static boolean debug = true;
     private ArrayList<NumberPicker> numberPickers;
     private Map<Integer, Integer> mUserInput = new HashMap();
     private int maxNumbers = 6;
     private Context mContext;
+    private LotteryDataSource mDataSource;
 
     //Constants
     private static final String[] CHART_AXIS_LABELS = {"Choose your number", "Frequency"};
 
     public DisplayFragment() {
+
     }
 
     @Override
@@ -75,7 +69,7 @@ public class DisplayFragment extends Fragment {
 
         switch(item.getItemId()) {
             case R.id.action_refresh:
-                updateData();
+                this.updateData(this.currentLotto);
                 return true;
         }
 
@@ -88,10 +82,15 @@ public class DisplayFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_display, container, false);
         this.mContext = inflater.getContext();
 
-        AbstractLottery powerBall = new PowerBallLottery(getResources().openRawResource(R.raw.powerball), mUserInput);
-        AbstractLottery cash4Life = new Cash4LifeLottery(getResources().openRawResource(R.raw.cash4life), mUserInput);
+        mDataSource = new LotteryDataSource(mContext);
+        mDataSource.open();
+
+        List<AbstractDrawing> drawings = mDataSource.getPowerBalls(null, null);
+
+        AbstractLottery powerBall = new PowerBallLottery(this.mContext, mUserInput);
+        powerBall.setDrawings(drawings);
         this.arrLotteries.add(powerBall);
-        this.arrLotteries.add(cash4Life);
+        this.currentLotto = this.arrLotteries.get(0);
 
         //set up the lottery selection functionality and charts
         ArrayList<String> strLotteries = new ArrayList<>();
@@ -110,16 +109,10 @@ public class DisplayFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 DisplayFragment.this.currentLotto = DisplayFragment.this.arrLotteries.get(i);
                 resetNumbers();
-
-                if (debug) {
-                    Helper.printMap(LOG_TAG, DisplayFragment.this.currentLotto.getMap());
-                }
-                DisplayFragment.this.addChartView(inflater.getContext());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(inflater.getContext(), "Nothing selected", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -136,7 +129,7 @@ public class DisplayFragment extends Fragment {
 
     private void resetNumbers() {
         mUserInput.clear();
-        this.currentLotto.setmUserInput(mUserInput);
+        this.currentLotto.setUserInput(mUserInput);
         for(NumberPicker picker : this.numberPickers) {
             picker.setValue(0);
             picker.setEnabled(false);
@@ -151,6 +144,7 @@ public class DisplayFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         //set up the number choosing UI
         maxNumbers = 6;
         this.numberPickers = new ArrayList<>(maxNumbers);
@@ -160,7 +154,7 @@ public class DisplayFragment extends Fragment {
             picker = new NumberPicker(getActivity().getApplicationContext());
             picker.setOrientation(LinearLayout.HORIZONTAL);
             picker.setMinValue(1);
-            picker.setMaxValue(60);
+            picker.setMaxValue(69);
             picker.setEnabled(false);
             picker.setTag(i);
 
@@ -177,16 +171,18 @@ public class DisplayFragment extends Fragment {
                         DisplayFragment.this.numberPickers.get(++offSet).setEnabled(true);
                     }
 
-                    DisplayFragment.this.currentLotto.setmUserInput(mUserInput);
+                    DisplayFragment.this.currentLotto.setUserInput(mUserInput);
                     DisplayFragment.this.addChartView(getActivity().getApplicationContext());
                 }
             });
         }
         this.numberPickers.get(0).setEnabled(true);
+
+        this.updateData(this.currentLotto);
+        this.addChartView(getActivity());
     }
 
     private void addChartView(Context context) {
-
         //get chart view
         LinearLayout linLayout = (LinearLayout) getActivity().findViewById(R.id.linLayout_chart);
         if (this.graphicalView != null) {
@@ -200,93 +196,9 @@ public class DisplayFragment extends Fragment {
 
     }
 
-    private void updateData() {
-        FetchLotteryData task = new FetchLotteryData();
-        task.execute(this.currentLotto.getUrl());
+    private void updateData(AbstractLottery lottery) {
+        FetchLottoData.start(mContext);
+        this.addChartView(getActivity());
     }
 
-    public class FetchLotteryData extends AsyncTask<String, Void, String>
-    {
-        @Override
-        protected String doInBackground(String... params) {
-            // If there's no zip code, there's nothing to look up.  Verify size of params.
-            if (params.length == 0) {
-                return null;
-            }
-
-            String URL;
-            if(params[0] == null || params[0] == "") {
-                return "";
-            } else {
-                URL = params[0];
-            }
-
-            // These two need to be declared outside the try/catch
-            // so that they can be closed in the finally block.
-            HttpURLConnection urlConnection = null;
-            BufferedReader reader = null;
-
-            try {
-
-                URL url = new URL(URL);
-
-                // Create the request to OpenWeatherMap, and open the connection
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("GET");
-                urlConnection.connect();
-
-                // Read the input stream into a String
-                InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
-                if (inputStream == null) {
-                    // Nothing to do.
-                    return null;
-                }
-                reader = new BufferedReader(new InputStreamReader(inputStream));
-
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
-                    // But it does make debugging a *lot* easier if you print out the completed
-                    // buffer for debugging.
-                    buffer.append(line + "\n");
-                }
-
-                Log.v(LOG_TAG, buffer.toString());
-                if (buffer.length() == 0) {
-                    // Stream was empty.  No point in parsing.
-                    return null;
-                }
-                Log.v(LOG_TAG, buffer.toString());
-                return buffer.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.e(LOG_TAG, "Error ", e);
-                // If the code didn't successfully get the weather data, there's no point in attemping
-                // to parse it.
-                return null;
-            } catch(Exception e) {
-                e.printStackTrace();
-                Log.e(LOG_TAG, "Error ", e);
-                return null;
-            } finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (final IOException e) {
-                        e.printStackTrace();
-                        Log.e(LOG_TAG, "Error closing stream", e);
-                    }
-                }
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-        }
-    }
 }

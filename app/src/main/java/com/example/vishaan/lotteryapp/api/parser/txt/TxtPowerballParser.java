@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,8 @@ public class TxtPowerballParser extends TxtParser {
     private static final String LOG_TAG = TxtPowerballParser.class.getSimpleName();
     private static boolean debug = false;
 
-    public TxtPowerballParser(Context context, InputStream inputStream) {
-        super(context, inputStream);
+    public TxtPowerballParser(Context context) {
+        super(context);
     }
 
     @Override
@@ -51,10 +50,10 @@ public class TxtPowerballParser extends TxtParser {
             while ((line = reader.readLine()) != null) {
                 winningNumbersArray = Helper.explode(line, "  ");
                 System.arraycopy(winningNumbersArray, 1, winningNumbersArray, 0, winningNumbersArray.length-1);
-                    output.add(Helper.converStringToIntegerArray(LOG_TAG, winningNumbersArray));
+                    output.add(Helper.converStringToIntegerArray(winningNumbersArray));
                 if(debug) {
 //                    Helper.log(LOG_TAG, "WINNING NUMBERS " + line);
-                    Integer[] i = Helper.converStringToIntegerArray(LOG_TAG, winningNumbersArray);
+                    Integer[] i = Helper.converStringToIntegerArray(winningNumbersArray);
 //                    Helper.log(LOG_TAG, Arrays.toString(i));
                 }
 

@@ -4,10 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -38,9 +34,9 @@ public class Helper {
         }
     }
 
-    public static void printMap(String tag, Map<Integer, Integer> map) {
+    public static void printMap(Map<Integer, Integer> map) {
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-//            log(tag, entry.getKey() + " = " + entry.getValue());
+            log(entry.getKey() + " = " + entry.getValue());
         }
     }
 
@@ -66,40 +62,37 @@ public class Helper {
         }
     }
 
-    public static String getStringFromStream(String tag, InputStream inputStream) {
-        if (inputStream == null) {
-            return null;
-        }
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuffer sb = new StringBuffer();
-        String line;
-
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-            if (sb.length() == 0) {
-                return null;
-            }
-            inputStream.mark(100);
-            inputStream.reset();
-            return sb.toString();
-        } catch (IOException e) {
-
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-
-            } catch (IOException e) {
-//                Helper.log(tag, e.getMessage());
-            }
-        }
+    public static String getStringFromStream(String tag) {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//        StringBuffer sb = new StringBuffer();
+//        String line;
+//
+//        try {
+//            while ((line = reader.readLine()) != null) {
+//                sb.append(line + "\n");
+//            }
+//            if (sb.length() == 0) {
+//                return null;
+//            }
+//            inputStream.mark(100);
+//            inputStream.reset();
+//            return sb.toString();
+//        } catch (IOException e) {
+//
+//        } finally {
+//            try {
+//                if (reader != null) {
+//                    reader.close();
+//                }
+//
+//            } catch (IOException e) {
+////                Helper.log(tag, e.getMessage());
+//            }
+//        }
         return null;
     }
 
-    public static Integer[] converStringToIntegerArray(String tag, String[] target) {
+    public static Integer[] converStringToIntegerArray(String[] target) {
         Integer[] results = new Integer[target.length];
 
         for (int i = 0; i < target.length; i++) {
@@ -133,7 +126,7 @@ public class Helper {
 
         Map<Integer, Integer> outputMap = new LinkedHashMap<>();
 
-        initializeMap(tag, outputMap);
+        initializeMap(outputMap, 69);
 
         try {
             boolean bShouldAdd;
@@ -154,7 +147,7 @@ public class Helper {
                 }
             }
 //            Helper.log(tag, "HASH MAP OUTPUT");
-            Helper.printMap(tag, outputMap);
+            Helper.printMap(outputMap);
             return outputMap;
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,9 +155,9 @@ public class Helper {
         return null;
     }
 
-    public static void initializeMap(String tag, Map<Integer, Integer> map) {
+    public static void initializeMap (Map<Integer, Integer> map, int length) {
         //initialize the map
-        for (int i = 1; i <= 60; i++) {
+        for (int i = 1; i <= length; i++) {
             map.put(i, 0);
         }
     }

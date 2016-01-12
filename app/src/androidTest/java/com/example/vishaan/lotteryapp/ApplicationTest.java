@@ -3,6 +3,7 @@ package com.example.vishaan.lotteryapp;
 import android.app.Application;
 import android.test.ApplicationTestCase;
 
+import com.example.vishaan.lotteryapp.api.AbstractDrawing;
 import com.example.vishaan.lotteryapp.api.PowerBallDrawing;
 import com.example.vishaan.lotteryapp.db.Contracts;
 import com.example.vishaan.lotteryapp.db.LotteryDataSource;
@@ -43,7 +44,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertTrue("Create Powerball row failed.", ts > 0);
 
         Helper.log("READING DATA");
-        List<PowerBallDrawing> drawings = mDataSource.getPowerBalls(null, null);
+        List<AbstractDrawing> drawings = mDataSource.getPowerBalls(null, null);
 
     }
 }

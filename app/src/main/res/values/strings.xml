@@ -12,4 +12,6 @@
     <string name="str_choose_numbers">Choose a number</string>
     <string name="btn_reset">Reset</string>
 
+    <string name="url_powerball">http://www.powerball.com/powerball/winnums-text.txt</string>
+
 </resources>
